@@ -36,7 +36,7 @@ function tree(x,z){let y=surface(x,z)+1;for(let i=0;i<4;i++)put(x,y+i,z,'wood');
 for(const [x,z] of [[-8,1],[-12,8],[9,0],[13,7],[-15,-4],[17,-3],[7,19],[-4,17],[21,12],[-20,15]])tree(x,z);
 for(const [x,z] of [[-6,9],[7,6],[12,14],[-16,4],[19,4]]){let y=surface(x,z)+1;put(x,y,z,'crystal');put(x,y+1,z,'ice');put(x+1,y,z,'ice')}
 for(let x=-2;x<=2;x++)for(let z=8;z<=11;z++){let y=surface(x,z)+1;if(Math.abs(x)===2||z===8||z===11)put(x,y,z,'stone');if(z===8&&x===0)put(x,y,z,'obsidian');}
-const player={x:0,z:-8,y:surface(0,-8)+1.02,vx:0,vy:0,vz:0,yaw:0,pitch:-.035,hp:5,maxHp:5,ground:true};let dragon={x:3,z:11,y:surface(3,11)+5.7,hp:100,alive:true,phase:0,hit:0};
+const player={x:0,z:-8,y:surface(0,-8)+1.02,vx:0,vy:0,vz:0,yaw:0,pitch:-.035,hp:5,maxHp:5,ground:true};let dragon={x:3,z:11,y:surface(3,11)+5.7,hp:100,alive:true,phase:0,hit:0,aggro:false,attackTimer:1.5};
 let started=false,keys={},selected=0,inventory=[{t:'stone',n:24},{t:'wood',n:12},{t:'ice',n:9},{t:'crystal',n:4},{t:'obsidian',n:3},{t:'fire',n:2}],lastHit=null,toastTimer=0,attackCooldown=0,fireballs=[],time=0,damageFlash=0;
 const slots=[['🪨','Pedra','stone'],['🪵','Madeira','wood'],['🧊','Gelo','ice'],['💠','Cristal','crystal'],['⬛','Obsidiana','obsidian'],['🔥','Fogo','fire']];
 function buildHotbar(){const bar=$('#hotbar');bar.innerHTML='';slots.forEach((s,i)=>{let el=document.createElement('div');el.className='slot'+(i===selected?' active':'');el.innerHTML=`<kbd>${i+1}</kbd><span class="icon">${s[0]}</span><small>${s[1]}</small><em>${inventory[i].n}</em>`;bar.appendChild(el)})}buildHotbar();
